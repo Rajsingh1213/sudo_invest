@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title></head>
+<body>
+  {% extends 'accounts/base.html' %}
+{% block content %}
+  <h2>Register</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="vendor">Vendor</option>
+        <option value="customer">Customer</option>
+    </select><br>
+    <button type="submit">Register</button>
+</form>
+  <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  {% endblock %}
+</body>
+</html>
